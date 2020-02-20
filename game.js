@@ -7,6 +7,7 @@ var gameHeight = 650 - 90; //play area (in pixels) height minus letter-container
 // var steps = 30;
 // var fallingSpeed = gameHeight / 5;
 // COMMENT
+// comment #2
 
 var letterPool = GenerateLetters(numberOfLetters);
 var letters = [];
