@@ -1,0 +1,93 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+.play-area{
+    display: flex;
+    height: 650px;
+    width: 1200px;
+    border-radius: 25px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #35495e;
+}
+
+.letter-container{
+    margin-top: 35px;
+    display: flex;
+    justify-content: space-around;
+    height: 55px;
+    width: 90%;
+}
+
+.letter{  
+    font-size: 34px;
+    position: relative;
+    top: 0px;
+}
+
+.curtain{
+    background-color: #35495e;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    width: 100%;
+    height: 90px;
+    position: relative;
+    top: -90px;
+    /* opacity: 0; */
+}
+
+.top-bar{
+    background-color: #347474;
+    height: 20px;
+    position: relative;
+    bottom: -70px;
+    width: 90%;
+    margin: auto;
+}
+
+.start-button{
+    font-family: inherit;
+    background-color: #347474;
+    position: absolute;
+    top: 50%;
+    font-size: 45px;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    outline: none;
+}
+
+.text-start{
+    padding-left: 4px;
+}
+
+.icon-start{
+    position: relative;
+    top: -3px;
+}
+
+.start-button-hide{
+    visibility: hidden;
+    opacity: 0;
+    transition: all 1s;
+}
+
+.countdown{
+    color: white;
+    font-size: 34px;
+}
+
+.countdown-hide{
+    visibility: hidden;
+}
