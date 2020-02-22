@@ -1,47 +1,44 @@
-var counter = 3; //number to count down from
-var startButton = document.getElementById("startButton"); //grabbing start button for use with countdown timer
+var counter = 3;
+var startButton = document.getElementById("startButton");
 var maxMissedKey;
 var maxReachBottom;
 var element = document.getElementById("test-letter");
 var gameHeight = 650 - 90; //play area (in pixels) height minus letter-container height
-// var steps = 30;
-// var fallingSpeed = gameHeight / 5;
-// COMMENT
-// comment #2
+var numberOfLetters = 16;
 
 var letterPool = GenerateLetters(numberOfLetters);
-var letters = [];
+var activeLetters = [];
 
 function GenerateLetters(count)
 {
   let arr = [];
-  let letter;
-
-  for (let i = count; i > 0; i--)
+  let myVar = document.getElementById("letterContainer");
+  for (let i = 0; i < count; i++)
   {
-    letter = document.createElement("div");
-    letter.id = "letter-" + i;
-    arr.push(letter);
+    arr.push(  {
+      text: "",
+      timeout: 5,
+      visibility: true,
+      correctKeyStrike: false,
+      element
+    });
+    arr[i].element = document.createElement("div");
+    arr[i].element.id = "letter-" + i;
+    myVar.appendChild(arr[i].element);
   }
   return arr;
 }
 
-letters.push(letterPool[0]);
-letters[0].innerHTML = "A";
-
-//hide the "start" button when clicked
 startButton.addEventListener("click", () => 
 {
   startButton.className += " start-button-hide";
   startButton.parentNode.appendChild(countDown);
 });
 
-//create + initialize an element for the 3, 2, 1 countdown
 var countDown = document.createElement("div");
 countDown.textContent = counter;
 countDown.setAttribute("class", "countdown");
 
-//countdown loop + hide element when complete
 var myTimer = window.setInterval(() =>
 {
   StartCountDown();
@@ -62,19 +59,8 @@ function StartCountDown()
 function StartGame() 
 {
   console.log("start game!");
-  RunLetterGen();
 }
 
-function RunLetterGen()
-{
-  while (letterPool.length > 0)
-  {
-    var genTimer = window.setInterval(() =>
-    {
-      ////make letters generate and start falling
-    }, 1000);
-  }
-}
 
 // function TrackLetterPosition (element){
 //     var newTimer = window.setInterval(() => {
