@@ -9,7 +9,9 @@ var countDown = document.createElement("div");
 
 var letterPool = GenerateLetters(numberOfLetters);
 var activeLetters = [];
-
+function RandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
 function GenerateLetters(count)
 {
   let arr = [];
@@ -23,8 +25,10 @@ function GenerateLetters(count)
       correctKeyStrike: false,
       element
     });
+
     arr[i].element = document.createElement("div");
     arr[i].element.id = "letter-" + i;
+    arr[i].element.textContent = String.fromCharCode(RandomNumber(65,90));
     arr[i].element.textContent = "A";
     RandomColor(arr[i].element);
     myVar.appendChild(arr[i].element);
@@ -89,12 +93,14 @@ function GameLoop(gameLength)
     {
       activeLetters.push(letterPool.shift());
       // console.log(letterPool.length);
+
       let letter = activeLetters[activeLetters.length - 1];
       letter.element.className += " letter-hide";
       letter.timeout = window.setTimeout(() =>
       {
         letter.element.className = "";
         RandomColor(letter.element);
+        letter.element.textContent= String.fromCharCode(RandomNumber(65,90));
         letterPool.push(activeLetters.shift());
       }, 5000);
       // activeLetters.timeout();  
@@ -102,6 +108,7 @@ function GameLoop(gameLength)
     count++;
     if (count >= gameLength)
     {
+
       window.clearInterval(game);
     }
   }, 1000);
