@@ -91,3 +91,10 @@ body{
 .countdown-hide{
     visibility: hidden;
 }
+.letter-hide{
+    position: relative;
+    transform:translateY(560px); 
+    visibility: hidden;
+    transition: all 5s;
+    transition-timing-function: linear;
+}

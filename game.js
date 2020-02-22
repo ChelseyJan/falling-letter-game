@@ -24,6 +24,7 @@ function GenerateLetters(count)
     });
     arr[i].element = document.createElement("div");
     arr[i].element.id = "letter-" + i;
+    arr[i].element.textContent = "A";
     myVar.appendChild(arr[i].element);
   }
   return arr;
@@ -59,6 +60,33 @@ function StartCountDown()
 function StartGame() 
 {
   console.log("start game!");
+  GameLoop(10);
+}
+
+
+function GameLoop(gameLength)
+{
+  count=0;
+  let game= window.setInterval(()=>{
+     if(letterPool.length)
+     {
+       activeLetters.push(letterPool.shift());
+      // console.log(letterPool.length);
+       let letter=activeLetters[activeLetters.length-1];
+ 
+       letter.element.className+= " letter-hide";
+       letter.timeout= window.setTimeout(()=>{
+       letter.element.className= "";
+       letterPool.push(activeLetters.shift());
+       },5000);
+      // activeLetters.timeout();  
+     }
+     count++;
+     if(count>=gameLength)
+     {
+      window.clearInterval(game);
+     }
+  },1000);
 }
 
 
