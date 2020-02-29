@@ -29,7 +29,6 @@ function GenerateLetters(count)
     arr[i].element = document.createElement("div");
     arr[i].element.id = "letter-" + i;
     arr[i].element.textContent = String.fromCharCode(RandomNumber(65,90));
-    arr[i].element.textContent = "A";
     RandomColor(arr[i].element);
     myVar.appendChild(arr[i].element);
   }
