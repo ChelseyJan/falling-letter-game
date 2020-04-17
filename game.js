@@ -19,13 +19,38 @@ function Scoreboard() {
   this.failures = 0;
   this.addHit = function() {
     this.hits += 1;
+    this.test();
   };
   this.addMiss = function() {
     this.misses += 1;
+    this.test();
   };
   this.addFailure = function() {
     this.failures += 1;
+    this.test();
   };
+  this.clearScoreboard = function() {
+    this.hits = 0;
+    this.misses = 0;
+    this.failures = 0;
+    this.test();
+  };
+  this.test = function() { //temp for testing
+    console.log(`hits = ${this.hits} misses = ${this.misses} failures = ${this.failures}`);
+  };
+}
+
+window.addEventListener("keydown", function(event) {
+  HandleKeydown(event);
+});
+
+function HandleKeydown(event) {
+  let test = event.keyCode;
+  console.log("inside HandleKeydown");
+  console.log(`The key you pressed is ${test}`);
+  //Check if pressed key is in the letterpool
+  //If key is not in letter pool do this.
+  //If key is in letter pool do that.
 }
 
 function RandomNumber(min, max) {
