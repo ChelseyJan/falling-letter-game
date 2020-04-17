@@ -9,6 +9,24 @@ var countDown = document.createElement("div");
 
 var letterPool = GenerateLetters(numberOfLetters);
 var activeLetters = [];
+
+const scoreBoard1 = new Scoreboard();
+
+function Scoreboard() {
+  this.hits = 0;
+  this.misses = 0;
+  this.failures = 0;
+  this.addHit = function() {
+    this.hits += 1;
+  };
+  this.addMiss = function() {
+    this.misses += 1;
+  };
+  this.addFailure = function() {
+    this.failures += 1;
+  };
+}
+
 function RandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
