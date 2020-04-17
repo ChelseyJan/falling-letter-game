@@ -48,6 +48,7 @@ function HandleKeydown(event) {
   let test = event.keyCode;
   console.log("inside HandleKeydown");
   console.log(`The key you pressed is ${test}`);
+  //let result = activeLetters.indexOf(event.keyCode);
   //Check if pressed key is in the letterpool
   //If key is not in letter pool do this.
   //If key is in letter pool do that.
@@ -67,12 +68,15 @@ function GenerateLetters(count)
       timeout: 5,
       visibility: true,
       correctKeyStrike: false,
+      characterCode: "",
       element
     });
 
+    let characterCode = RandomNumber(65,90);
     arr[i].element = document.createElement("div");
     arr[i].element.id = "letter-" + i;
-    arr[i].element.textContent = String.fromCharCode(RandomNumber(65,90));
+    arr[i].element.textContent = String.fromCharCode(characterCode);
+    arr[i].characterCode = characterCode;
     RandomColor(arr[i].element);
     myVar.appendChild(arr[i].element);
   }
