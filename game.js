@@ -1,12 +1,13 @@
+//Game Settings
+var gameHeight = 650 - 90; //play area (in pixels) height minus letter-container height
+var numberOfLetters = 16;
+
 var counter = 3;
 var startButton = document.getElementById("startButton");
 var maxMissedKey;
 var maxReachBottom;
 var element = document.getElementById("test-letter");
-var gameHeight = 650 - 90; //play area (in pixels) height minus letter-container height
-var numberOfLetters = 16;
 var countDown = document.createElement("div");
-
 var letterPool = GenerateLetters(numberOfLetters);
 var activeLetters = [];
 
