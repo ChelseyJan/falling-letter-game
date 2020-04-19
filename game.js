@@ -40,18 +40,28 @@ function Scoreboard() {
   };
 }
 
-window.addEventListener("keydown", function(event) {
-  HandleKeydown(event);
+window.addEventListener("keydown", (e) => {
+  console.log(e.keyCode);
+  HandleKeydown(e.keyCode);
 });
 
-function HandleKeydown(event) {
-  let test = event.keyCode;
+function HandleKeydown(pressedKeyCode) {
   console.log("inside HandleKeydown");
-  console.log(`The key you pressed is ${test}`);
-  //let result = activeLetters.indexOf(event.keyCode);
-  //Check if pressed key is in the letterpool
-  //If key is not in letter pool do this.
-  //If key is in letter pool do that.
+  console.log(pressedKeyCode);
+
+
+  let keyIndex = activeLetters.findIndex((obj) => {
+    console.log(obj.characterCode == pressedKeyCode);
+    return obj.characterCode == pressedKeyCode;
+  });
+
+  console.log(keyIndex);
+
+  if (keyIndex > -1) {
+    scoreBoard1.addHit();
+  } else {
+    scoreBoard1.addMiss();
+  }
 }
 
 function RandomNumber(min, max) {
