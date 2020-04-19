@@ -1,14 +1,69 @@
+//Game Settings
+var gameHeight = 650 - 90; //play area (in pixels) height minus letter-container height
+var numberOfLetters = 16;
+
 var counter = 3;
 var startButton = document.getElementById("startButton");
 var maxMissedKey;
 var maxReachBottom;
 var element = document.getElementById("test-letter");
-var gameHeight = 650 - 90; //play area (in pixels) height minus letter-container height
-var numberOfLetters = 16;
 var countDown = document.createElement("div");
-
 var letterPool = GenerateLetters(numberOfLetters);
 var activeLetters = [];
+
+const scoreBoard1 = new Scoreboard();
+
+function Scoreboard() {
+  this.hits = 0;
+  this.misses = 0;
+  this.failures = 0;
+  this.addHit = function() {
+    this.hits += 1;
+    this.test();
+  };
+  this.addMiss = function() {
+    this.misses += 1;
+    this.test();
+  };
+  this.addFailure = function() {
+    this.failures += 1;
+    this.test();
+  };
+  this.clearScoreboard = function() {
+    this.hits = 0;
+    this.misses = 0;
+    this.failures = 0;
+    this.test();
+  };
+  this.test = function() { //temp for testing
+    console.log(`hits = ${this.hits} misses = ${this.misses} failures = ${this.failures}`);
+  };
+}
+
+window.addEventListener("keydown", (e) => {
+  console.log(e.keyCode);
+  HandleKeydown(e.keyCode);
+});
+
+function HandleKeydown(pressedKeyCode) {
+  console.log("inside HandleKeydown");
+  console.log(pressedKeyCode);
+
+
+  let keyIndex = activeLetters.findIndex((obj) => {
+    console.log(obj.characterCode == pressedKeyCode);
+    return obj.characterCode == pressedKeyCode;
+  });
+
+  console.log(keyIndex);
+
+  if (keyIndex > -1) {
+    scoreBoard1.addHit();
+  } else {
+    scoreBoard1.addMiss();
+  }
+}
+
 function RandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
@@ -23,12 +78,15 @@ function GenerateLetters(count)
       timeout: 5,
       visibility: true,
       correctKeyStrike: false,
+      characterCode: "",
       element
     });
 
+    let characterCode = RandomNumber(65,90);
     arr[i].element = document.createElement("div");
     arr[i].element.id = "letter-" + i;
-    arr[i].element.textContent = String.fromCharCode(RandomNumber(65,90));
+    arr[i].element.textContent = String.fromCharCode(characterCode);
+    arr[i].characterCode = characterCode;
     RandomColor(arr[i].element);
     myVar.appendChild(arr[i].element);
   }
